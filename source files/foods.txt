@@ -1,0 +1,12 @@
+Paratha-Khichuri-Polau(-Egg-) 500
+Paratha-Khichuri-Polau(-Chicken-) 550
+Paratha-Khichuri-Polau(-Beef-) 600
+Paratha-Khichuri-Polau(-Mutton-) 650
+Bread-Polau-Rice(-Egg-) 400
+Bread-Polau-Rice(-Chicken-) 450
+Bread-Polau-Rice(-Beef-) 500
+Bread-Polau-Rice(-Mutton-) 550
+Ruti-Rice-Rice(-Egg-) 300
+Ruti-Rice-Rice(-Chicken-) 350
+Ruti-Rice-Rice(-Beef-) 400
+Ruti-Rice-Rice(-Mutton-) 450

@@ -90,11 +90,11 @@ class Manager
 
 };
 
-int main()
-{
-    Manager m;
-    m.clintList();
-    m.employeeList();
-    m.Record();
-    m.seeMessages();
-}
+// int main()
+// {
+//     Manager m;
+//     m.clintList();
+//     m.employeeList();
+//     m.Record();
+//     m.seeMessages();
+// }
