@@ -1,13 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std ;
 
-class Clients ;
-vector < Clients > clientList ;
-
 #include "Room.cpp"
 #include "FoodPackage.cpp"
 
-int Id = 101010 ;
+class Clients ;
+vector < Clients > clientList ;
+
+int Id = clientList[clientList.size()-1].getID() ;
 
 class Clients
 {
@@ -21,44 +21,134 @@ class Clients
         string phoneNo ;
         int roomNo;
         FoodPackage fooding ;
-        //vector < Clients > clientList ;
         
-    
+        Clients( )
+            {
+                name = "" ;
+                phoneNo = "" ;
+                ID = 0 ;
+                password = "" ;
+                fooding.package = "" ;
+
+            }
+
         Clients( string Name, string Phone, string Password )
         {
             name = Name ;
             phoneNo = Phone ;
-            ID = Id++ ;
+            ID = ++Id ;
             password = Password ;
             roomNo = total = due = 0 ;
-            fooding.package = "" ;
+            fooding.package = "null" ;
         }
 
-        Clients( )
+        Clients( int initializer )
         {
-            name = "" ;
-            phoneNo = "" ;
-            ID = 0 ;
-            password = "" ;
-            fooding.package = "" ;
-
-            // Clients u1( "Shaikh", "01212", "asdf1234" );
-            // Clients u2( "Samad", "01212",  "asdf1234" );
-            // Clients u3( "Shahidul", "01212", "asdf1234" );
-            // clientList.push_back( u1 );
-            // clientList.push_back( u2 );
-            // clientList.push_back( u3 );
+            clientUpdate() ;
         }
 
+        void clientUpdate()
+        {
+            clientList.clear();
+            ifstream my_file;
+            my_file.open( "clients.txt", ios::in );
+            if ( !my_file ) 
+            {
+                cout << "No such file";
+            }
+            else 
+            {
+                string Pass, Phone, Name , Food ;
+                int id , Room , Due, Total;
+
+                while ( 1 ) 
+                {
+                    Clients addClient ;
+                    if ( my_file.eof() ) break;
+				        
+                    my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;
+                    addClient.ID = id ;
+                    addClient.password = Pass ;
+                    addClient.name = Name ;
+                    addClient.phoneNo = Phone ;
+                    addClient.fooding.package = Food ;
+                    addClient.roomNo = Room ;
+                    addClient.total = Total ;
+                    addClient.due = Due ;
+
+                    clientList.emplace_back( addClient );
+                }
+            }
+
+            my_file.close();
+        }
+
+        void updateBack()
+        {
+            ofstream my_file ;
+            string str ;
+            my_file.open( "clients.txt", ios::trunc );
+            
+            if ( !my_file ) 
+            {
+                cout << "No such file";
+            }
+            else 
+            {
+                for ( int i = 0; i < clientList.size(); i++ )
+                { 
+                    if( i > 0 ) my_file << endl ;
+                    my_file << clientList[i].getID() << " " << clientList[i].getPassword() << " " << clientList[i].name <<  
+                    " " << clientList[i].phoneNo << " " << clientList[i].fooding.package << " " << clientList[i].roomNo << 
+                    " " << clientList[i].getTotal() << " " << clientList[i].getDue() ;
+                }
+                
+            } 
+            my_file.close() ;
+            
+        }
+
+        void signUp(  )
+        {
+            string Name, Phone, Pass;
+            cout << "Enter Your Name : ";
+            cin >> Name ;
+            cout << "Enter Your Phone No : " ;
+            cin >> Phone ;
+            cout << "Enter Password : " ;
+            cin >> Pass ;
+            Clients newClient( Name, Phone, Pass ) ;
+            cout << "\n      !!! New account created !!! \n\n ";
+            cout << "ID - " << newClient.ID << "  Password - " << newClient.password << endl << endl ;
+            cout << "Keep these informations safe and secured . \n\n" ;
+            clientList.push_back( newClient ) ;
+        }
+
+        
         int getID()
         {
             return this->ID ;
         }
 
-        // string getPassword()
-        // {
-        //     return this->password ;
-        // }
+        string getPassword()
+        {
+            return this->password ;
+        }
+
+        int getTotal()
+        {
+            return this->total ;
+        }
+
+        int getDue()
+        {
+            return this->due ;
+        }
+
+        void getAccount()
+        {
+            cout << "Total : " << total << "  Due : " << due << endl ;
+        }
 
         void print()
         {
@@ -77,7 +167,8 @@ class Clients
         {
             int n = 3 , match;
             while ( n-- )
-            {
+            {   
+                getchar() ;
                 cout << "Please enter ID : " ;
                 cin >> client.ID ;
                 cout << "Please enter password : " ;
@@ -152,7 +243,7 @@ class Clients
             {
                 if ( client.ID == clientList[i].ID && client.password == clientList[i].password )
                 {
-                    cout << "Matched!!" << endl ;
+                    cout << "\n\n    Matched!!! \n" << endl ;
                     return i;
                 }    
             }
@@ -168,12 +259,78 @@ class Clients
             cout << "Press any key to continue :\n" ;
             _getwche() ;
         }
+
+        void checkOut( )
+        {
+            int payment = 0 ;
+            char ch = 'N' ;
+            getAccount() ;
+            cout << "Wanna pay now ? Y/N " ;
+            cin >> ch ;
+            if( ch == 'Y' )
+            {
+                cout << "Amount want to pay : " ;
+                cin >> payment ;
+                due -= payment ;
+            }
+            if( due > 0 )
+            {
+                cout << "CheckOut not successful...\n";
+                cout << "Due : " << due ;
+            }
+            else
+            {
+                if( due != 0 ) cout << "The change in return is " << fabs(due) << endl ;
+                cout << "Checkout Successful .. \n" << endl ;
+                fooding.package = "null" ;
+                roomNo = 0 ;
+                total = 0 ;
+
+                cout << "If you please leave a review ? Y/N " ;
+                cin >> ch ;
+                if( ch == 'Y' )
+                {
+                    message() ;
+                }
+            } 
+
+        }
+
+        void message()
+        {
+            string Message ;
+            cout << "Enter your message : " ;
+            getchar() ;
+            getline( cin ,Message ) ;
+
+            fstream my_file ;
+            my_file.open( "messages.txt", ios::app );
+            
+            if ( !my_file ) 
+            {
+                cout << "No such file";
+            }
+            else 
+            {
+                my_file << endl << Message ;
+            }
+            my_file.close() ;
+        }
+
+        void changePassword()
+        {
+            string newPass, renewPass;
+            
+            do
+            {
+                cout << "Enter New password : " ;
+                cin >> newPass ;
+                cout << "Enter New password again : " ;
+                cin >> renewPass ;
+            } while ( newPass != renewPass );
+            
+            password = newPass ;
+
+        }
         
 };
-
-// int main()
-// {
-//     Clients c1( "Shaikh", "01212", "asdf1234" );
-//     c1.enrollFood();
-//     c1.printStatus();
-// }

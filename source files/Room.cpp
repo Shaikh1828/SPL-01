@@ -20,12 +20,20 @@ class Room
 
         Room()
         {
-            
+            roomNo = 0;
+            bed = "" ;
+            condition = "";
+            availableStatus = true;
         }
 
         Room( int initialize )
         {
             roomsUpdate() ;
+        }
+
+        int getResiderID()
+        {
+            return this->residerID;
         }
 
         void roomsUpdate()
@@ -40,26 +48,51 @@ class Room
             else 
             {
                 string Bed, Condition;
-                int Roomnum, Price ;
+                int Roomnum, Price , Resider;
                 bool status;
 
                 while ( 1 ) 
                 {
                     Room roomCreate;
-                    if (my_file.eof())
+                    if ( my_file.eof() )
 				        break;
-                    my_file >> Roomnum >> Bed >> Condition >> status >> Price;
+                    my_file >> Roomnum >> Bed >> Condition >> status >> Price >> Resider ;
                     roomCreate.roomNo = Roomnum;
                     roomCreate.bed = Bed ;
                     roomCreate.condition = Condition ;
                     roomCreate.availableStatus = status ;
                     roomCreate.price = Price ;
+                    roomCreate.residerID = Resider ;
                     
-                    rooms.push_back( roomCreate );
+                    rooms.emplace_back( roomCreate );
                 }
             }
 
             my_file.close();
+        }
+
+        void updateBack()
+        {
+            ofstream my_file ;
+            string str ;
+            my_file.open( "rooms.txt", ios::trunc );
+            
+            if ( !my_file ) 
+            {
+                cout << "No such file";
+            }
+            else 
+            {
+                for ( int i = 0; i < rooms.size(); i++ )
+                {   
+                    if( i > 0 ) my_file << endl ;
+                    my_file << rooms[i].roomNo << " " << rooms[i].bed << " " << rooms[i].condition << " " 
+                    << rooms[i].availableStatus << " " << rooms[i].price << " " << rooms[i].getResiderID() ;
+                }
+                
+            }
+            my_file.close() ;
+            
         }
 
         void setResiderID( int id )
@@ -70,7 +103,7 @@ class Room
         bool booking( Room room, int ID )
         {
             int i = roomMatch( room ) ;
-            if( i )
+            if( i != -1 )
             {
                 rooms[i].availableStatus = false ;
                 rooms[i].setResiderID( ID ) ;
@@ -102,7 +135,7 @@ class Room
                     break;
                 } 
             }
-            return 0;
+            return -1;
         }
 
         void showRoomList()
@@ -124,3 +157,9 @@ class Room
 
         }
 };
+
+// int main()
+// {
+//     Room r1(1);
+//     r1.showRoomList();
+// }
