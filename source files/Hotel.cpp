@@ -42,7 +42,8 @@ class Hotel
                     }
                     case 2:
                     {
-                        cout << "\n\n     Client Sign up :    \n\n" ;
+                        cout << "\n\n      Client Sign up :     \n\n" ;
+                        cout << " Creating a profile to enroll... \n\n " ;
                         signupInterface();
                         break;
                     }
@@ -103,7 +104,12 @@ void Hotel::loginInterface()
         while ( choice != 9 )
         {
             updateAll();
-            cout << "\n\n Client : " << clientList[match].name << " - " << clientList[match].getID() << endl << endl ;
+            cout << "\n\n" ;
+            cout << "*****************************************************" ;
+            cout << "\n\n                     Room Raccon              \n\n" ;
+            cout << "*****************************************************" << endl;
+            cout << "\n\n Client : " << clientList[match].name << "  -  " << clientList[match].getID() << endl << endl ;
+            cout << "-----------------------------------------------------\n\n" ;
             cout << "1. Book Room .\n\n" ;
             cout << "2. Enroll Food-package .\n\n" ;
             cout << "3. Current Status .\n\n" ;
@@ -220,6 +226,12 @@ void Hotel::loginInterface()
 void Hotel::signupInterface()
 {
     updateAll();
+    cout << "\n\n" ;
+    cout << "*****************************************************" ;
+    cout << "\n\n                     Room Raccon              \n\n" ;
+    cout << "*****************************************************" << endl;
+
+    cout << "\n\n Sign up informtions : \n\n" ; 
     Clients newClient;
     newClient.signUp( );
     cout << "Press any key to continue :\n" ;
@@ -237,6 +249,10 @@ void Hotel::managerLogin()
         while ( choice != 6 )
         {
             updateAll();
+            cout << "\n\n" ;
+            cout << "*****************************************************" ;
+            cout << "\n\n                     Room Raccon              \n\n" ;
+            cout << "*****************************************************" << endl;
             cout << "\n\n       Manager Control  \n------------------------------\n\n"  ;
             cout << "1. Current Client List .\n\n" ;
             cout << "2. Current Employee List .\n\n" ;
@@ -289,7 +305,7 @@ void Hotel::managerLogin()
                 }
                 case 6:
                 {
-                    cout << "\n\n    Exiting from the system ..  \n\n" ;
+                    cout << "\n\n  Logging out from the Manager system ..  \n\n" ;
                     cout << "Press any key to continue :\n" ;
                     _getwche() ;
                     break;

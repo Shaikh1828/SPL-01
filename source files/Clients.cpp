@@ -7,8 +7,6 @@ using namespace std ;
 class Clients ;
 vector < Clients > clientList ;
 
-int Id = clientList[clientList.size()-1].getID() ;
-
 class Clients
 {
     private:
@@ -34,6 +32,7 @@ class Clients
 
         Clients( string Name, string Phone, string Password )
         {
+            int Id = clientList[clientList.size()-1].getID() ;
             name = Name ;
             phoneNo = Phone ;
             ID = ++Id ;
@@ -120,7 +119,7 @@ class Clients
             Clients newClient( Name, Phone, Pass ) ;
             cout << "\n      !!! New account created !!! \n\n ";
             cout << "ID - " << newClient.ID << "  Password - " << newClient.password << endl << endl ;
-            cout << "Keep these informations safe and secured . \n\n" ;
+            cout << "**  Keep these informations safe and secured  ** \n\n" ;
             clientList.push_back( newClient ) ;
         }
 
@@ -253,9 +252,9 @@ class Clients
         void printStatus()
         {
             cout << endl ;
-            cout << name << "  ID- " << ID << "  Phone : " << phoneNo << endl ;
-            cout << "Room : " << roomNo << " Fooding - " << fooding.package << endl ;
-            cout << "Total : " << total << "  Due : " << due << endl << endl ;
+            cout << name << "  ID- " << ID << "    Phone : " << phoneNo << endl ;
+            cout << "Room : " << roomNo << "   Fooding - " << fooding.package << endl ;
+            cout << "Total : " << total << "    Due : " << due << endl << endl ;
             cout << "Press any key to continue :\n" ;
             _getwche() ;
         }
@@ -275,14 +274,23 @@ class Clients
             }
             if( due > 0 )
             {
-                cout << "CheckOut not successful...\n";
+                cout << "\nCheckOut not successful...\n";
                 cout << "Due : " << due ;
+                cout << "\nPress any key to continue :\n" ;
+                    _getwche() ;
             }
             else
             {
-                if( due != 0 ) cout << "The change in return is " << fabs(due) << endl ;
+                if( due != 0 ) 
+                {
+                    cout << "The change in return is " << fabs(due) << endl ;
+                    due = 0 ;
+                }
                 cout << "Checkout Successful .. \n" << endl ;
                 fooding.package = "null" ;
+                Room room;
+                room.roomNo = roomNo;
+                room.checkOut( room ) ;
                 roomNo = 0 ;
                 total = 0 ;
 
@@ -319,17 +327,21 @@ class Clients
 
         void changePassword()
         {
-            string newPass, renewPass;
+            string newPass="a", renewPass="";
             
-            do
+            while ( newPass != renewPass )
             {
                 cout << "Enter New password : " ;
                 cin >> newPass ;
                 cout << "Enter New password again : " ;
                 cin >> renewPass ;
-            } while ( newPass != renewPass );
+                if( newPass != renewPass ) cout << "Password didn't match..Try again..\n" ;
+            } 
             
             password = newPass ;
+            cout << "\n\n    !!! Password changed successfully !!!\n\n" ;
+            cout << "Press any key to continue :\n" ;
+            _getwche() ;
 
         }
         

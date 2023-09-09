@@ -28,6 +28,7 @@ class Manager
                 }
 
             }
+            cout << endl ;
 
             my_file.close();
         }
@@ -52,12 +53,14 @@ class Manager
 				        
                     my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;
 
-                    cout << id << " - " << Name << " Phone : " << Phone << endl ;
+                    cout << id << " - " << Name << " , Phone : " << Phone << endl ;
                    
                 }
             }
 
             my_file.close();
+            cout << "\nPress any key to continue :\n" ;
+            _getwche() ;
         }
         
 
@@ -80,6 +83,7 @@ class Manager
                 }
 
             }
+            cout << endl ;
 
             my_file.close();
         }
@@ -104,11 +108,11 @@ class Manager
 				        
                     my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;
 
-                    if( Room != 0 )cout << id << " - " << Name << " Phone : " << Phone << endl ;
+                    if( Room != 0 || Food.size() > 5 )cout << id << " - " << Name << " , Phone : " << Phone << endl ;
                    
                 }
             }
-
+ 
             my_file.close();
         
         }
@@ -215,7 +219,7 @@ class Manager
             
             for ( int i = 0; i < dues.size(); i++ )
             {
-                if( dues[i] > 0 ) cout << ids[i] << " - " << dues[i] << endl ;
+                if( dues[i] > 0 ) cout << "\t" << ids[i] << "\t - \t" << dues[i] << endl ;
             }
             
         }

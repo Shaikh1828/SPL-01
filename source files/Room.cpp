@@ -115,8 +115,9 @@ class Room
 
         void roomChanging( Room previous )
         {
-            previous.availableStatus = true ;
-            previous.residerID = 0 ;
+            int previousRoomIdx = roomMatch(previous) ;
+            rooms[ previousRoomIdx ].availableStatus = true ;
+            rooms[ previousRoomIdx ].residerID = 0 ;
         }
         
         bool isAvailable( Room room )
@@ -155,6 +156,13 @@ class Room
             else
                 cout << "Sorry. No Room Available.\n" ;
 
+        }
+
+        void checkOut( Room room )
+        {
+            int index = roomMatch( room );
+            rooms[index].availableStatus = true ;
+            rooms[index].setResiderID( 0 ) ;
         }
 };
 
