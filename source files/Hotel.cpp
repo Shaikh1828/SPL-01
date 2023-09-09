@@ -43,7 +43,7 @@ class Hotel
                     case 2:
                     {
                         cout << "\n\n      Client Sign up :     \n\n" ;
-                        cout << " Creating a profile to enroll... \n\n " ;
+                        cout << " Creating a profile to enroll... \n " ;
                         signupInterface();
                         break;
                     }
@@ -160,7 +160,7 @@ void Hotel::loginInterface()
                 }
                 case 4:
                 {    
-                    cout << "\n\n    Room Changing menu :\n\n" ;
+                    cout << "\n\n    Room Changing menu :\n" ;
                     clientList[match].changeRoom( );
                     break;
                 }
@@ -287,6 +287,8 @@ void Hotel::managerLogin()
                 {  
                     cout << "\n\nThe Dues list : \n\n " ;  
                     manager.duesCheck();
+                    cout << "\n\nPress any key to continue :\n" ;
+                    _getwche() ;
                     break;
                 }
                 case 4:

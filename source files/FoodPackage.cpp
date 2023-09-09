@@ -55,7 +55,7 @@ class FoodPackage
         {
             for( int i=0 ; i < foods.size() ; i++ )
             {
-                cout << i+1 << ". " << foods[i].package << " : " << foods[i].cost << endl ; 
+                cout << i+1 << ". " << foods[i].package << " : \t$ " << foods[i].cost << endl << endl ; 
             }
         }
 

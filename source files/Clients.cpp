@@ -189,7 +189,7 @@ class Clients
             {
                 do
                 {
-                    cout << "Enter the prefered room no : " ;
+                    cout << "\nEnter the prefered room no : " ;
                     cin >> roomChoice ;
                     room.roomNo = roomChoice ;
                     roomNo = roomChoice ;
@@ -198,6 +198,12 @@ class Clients
                 total += rooms[ room.roomMatch(room) ].price ;
                 due += rooms[ room.roomMatch(room) ].price ;
             }
+            else
+            {
+                cout << "\n   Sorry, No room available.\n\n" ;
+            }
+            cout << "Press any key to continue :\n" ;
+            _getwche() ;
         }
 
         void changeRoom( )
@@ -213,12 +219,14 @@ class Clients
             FoodPackage food;
             int foodChoice ;
             food.showFoodList();
-            cout << "Enter prefered food-package no : ";
+            cout << "\n\nEnter prefered food-package no : ";
             cin >> foodChoice ;
             foodChoice -- ;
             fooding = foods[foodChoice] ;
             total += fooding.cost ;
             due += fooding.cost ;
+            cout << "\nPress any key to continue :\n" ;
+            _getwche() ;
         }
 
         void foodChange()

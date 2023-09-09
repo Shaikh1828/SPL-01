@@ -27,14 +27,14 @@
 409 Double AC 1 1800 0
 410 Double AC 1 1800 0
 411 Double AC 1 1800 0
-412 Double AC 1 1800 0
-503 Single Non-AC 0 1200 101011
+412 Double AC 0 1800 101008
+503 Single Non-AC 1 1200 0
 504 Single Non-AC 1 1200 0
 505 Single Non-AC 1 1200 0
 506 Single Non-AC 1 1200 0
 507 Single Non-AC 1 1200 0
 508 Double Non-AC 1 1800 0
 509 Double Non-AC 1 1800 0
-510 Double Non-AC 0 1800 101003
+510 Double Non-AC 1 1800 0
 511 Double Non-AC 1 1800 0
 512 Double Non-AC 1 1800 0

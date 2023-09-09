@@ -11,7 +11,7 @@ class Manager
 
         void employeeList()
         {
-            cout << "\n\n    Employee list : \n-----------------\n" ;
+            cout << "\n\n    Employee list : \n---------------------\n" ;
             ifstream my_file;
             my_file.open( "EmployeeList.txt", ios::in );
             if ( !my_file ) 
@@ -24,7 +24,7 @@ class Manager
 
                 while ( getline(my_file, line)) 
                 {
-                    cout << line << endl;
+                    cout << line << endl << endl ;
                 }
 
             }
@@ -35,7 +35,7 @@ class Manager
 
         void Record()
         {
-            cout << "\n\n----------\nRecord:\n---------\n\n" ;
+            cout << "\n\n----------\nRecord:\n----------\n\n" ;
             ifstream my_file;
             my_file.open( "clients.txt", ios::in );
             if ( !my_file ) 
@@ -53,14 +53,13 @@ class Manager
 				        
                     my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;
 
-                    cout << id << " - " << Name << " , Phone : " << Phone << endl ;
+                    cout << id << " - " << Name << " , Phone : " << Phone << endl << endl ;
                    
                 }
             }
 
             my_file.close();
-            cout << "\nPress any key to continue :\n" ;
-            _getwche() ;
+        
         }
         
 
@@ -194,7 +193,7 @@ class Manager
 
             sorting( dues, ids );
             
-            cout << "Total Due : " << totalDue << endl ;
+            cout << "\nTotal Due : " << totalDue << endl ;
 
         }
 

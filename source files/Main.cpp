@@ -8,5 +8,5 @@ int main()
 {
     Hotel RoomRaccon ;
     RoomRaccon.menu() ;
-    
+    cout << endl ;
 }

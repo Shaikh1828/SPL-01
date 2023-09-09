@@ -143,7 +143,7 @@ class Room
         {
             if( rooms.size() != 0 )
             {
-                cout << " Available rooms : \n" ;
+                cout << "\n\n Available rooms : \n\n" ;
                 for( int i=0 ; i < rooms.size() ; i++ )
                 {
                     if ( rooms[i].availableStatus )

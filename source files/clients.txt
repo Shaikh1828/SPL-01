@@ -1,7 +1,8 @@
-101001 asdf Samad 03083 null 0 0 0
-101002 asdf Sagor 02422 null 0 0 0
-101003 asdf Sumon 03244 null 0 0 0
-101004 asdf Sobuj 03043 null 0 0 0
+101006 asdf Samad 03083 null 0 0 0
+101007 asdf Sagor 02422 null 0 0 0
+101008 asdf Sumon 03244 Bread-Polau-Rice(-Egg-) 412 3400 3400
+101009 asdf Sobuj 03043 null 0 0 0
 101010 asdf Sajid 73628 Paratha-Khichuri-Polau(-Mutton-) 211 2250 1250
-101011 zxcv Sojib 432266 Bread-Polau-Rice(-Beef-) 503 4000 4000
+101011 asdf Sojib 432266 null 0 0 0
 101012 qwer Simanto 435522 null 0 0 0
+101013 asdf Sakib 432849 null 0 0 0
