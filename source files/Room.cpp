@@ -165,9 +165,3 @@ class Room
             rooms[index].setResiderID( 0 ) ;
         }
 };
-
-// int main()
-// {
-//     Room r1(1);
-//     r1.showRoomList();
-// }

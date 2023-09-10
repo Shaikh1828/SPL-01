@@ -224,12 +224,3 @@ class Manager
         }
 
 };
-
-// int main()
-// {
-//     Manager m;
-//     m.clientList();
-//     m.employeeList();
-//     m.Record();
-//     m.seeMessages();
-// }
