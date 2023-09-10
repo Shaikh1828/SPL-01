@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    Hotel RoomRaccon ;
-    RoomRaccon.menu() ;
+    Hotel RoomRaccoon ;
+    RoomRaccoon.menu() ;
     cout << endl ;
 }

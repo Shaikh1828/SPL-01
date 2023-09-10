@@ -21,7 +21,7 @@ class Hotel
                
                 cout << "\n\n" ;
                 cout << "*****************************************************" ;
-                cout << "\n\n                     Room Raccon              \n\n" ;
+                cout << "\n\n                     Room Raccoon              \n\n" ;
                 cout << "*****************************************************" << endl;
 
                 cout << "\n1. Client Log in ." << endl ;
@@ -106,7 +106,7 @@ void Hotel::loginInterface()
             updateAll();
             cout << "\n\n" ;
             cout << "*****************************************************" ;
-            cout << "\n\n                     Room Raccon              \n\n" ;
+            cout << "\n\n                     Room Raccoon              \n\n" ;
             cout << "*****************************************************" << endl;
             cout << "\n\n Client : " << clientList[match].name << "  -  " << clientList[match].getID() << endl << endl ;
             cout << "-----------------------------------------------------\n\n" ;
@@ -228,7 +228,7 @@ void Hotel::signupInterface()
     updateAll();
     cout << "\n\n" ;
     cout << "*****************************************************" ;
-    cout << "\n\n                     Room Raccon              \n\n" ;
+    cout << "\n\n                     Room Raccoon              \n\n" ;
     cout << "*****************************************************" << endl;
 
     cout << "\n\n Sign up informtions : \n\n" ; 
@@ -251,7 +251,7 @@ void Hotel::managerLogin()
             updateAll();
             cout << "\n\n" ;
             cout << "*****************************************************" ;
-            cout << "\n\n                     Room Raccon              \n\n" ;
+            cout << "\n\n                     Room Raccoon              \n\n" ;
             cout << "*****************************************************" << endl;
             cout << "\n\n       Manager Control  \n------------------------------\n\n"  ;
             cout << "1. Current Client List .\n\n" ;

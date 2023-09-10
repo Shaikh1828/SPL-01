@@ -89,7 +89,7 @@ class Manager
 
         void clientList()
         {
-            cout << "\n--------------\nCurrent Clients: \n-------------\n" ;
+            cout << "\n-----------------\nCurrent Clients: \n----------------\n" ;
             ifstream my_file;
             my_file.open( "clients.txt", ios::in );
             if ( !my_file ) 
