@@ -1,8 +1,11 @@
 #include<bits/stdc++.h>
+#include <fstream>
 using namespace std ;
 
 #include "Room.cpp"
 #include "FoodPackage.cpp"
+#include "AESfinal.cpp"
+
 
 class Clients ;
 vector < Clients > clientList ;
@@ -21,14 +24,14 @@ class Clients
         FoodPackage fooding ;
         
         Clients( )
-            {
-                name = "" ;
-                phoneNo = "" ;
-                ID = 0 ;
-                password = "" ;
-                fooding.package = "" ;
+        {
+            name = "" ;
+            phoneNo = "" ;
+            ID = 0 ;
+            password = "" ;
+            fooding.package = "" ;
 
-            }
+        }
 
         Clients( string Name, string Phone, string Password )
         {
@@ -49,7 +52,8 @@ class Clients
         void clientUpdate()
         {
             clientList.clear();
-            ifstream my_file;
+            fstream my_file;
+            // my_file.open( "clients.txt", ios::in );
             my_file.open( "clients.txt", ios::in );
             if ( !my_file ) 
             {
@@ -58,16 +62,17 @@ class Clients
             else 
             {
                 string Pass, Phone, Name , Food ;
-                int id , Room , Due, Total;
+                int id , Room , Due, Total ;
 
                 while ( 1 ) 
                 {
                     Clients addClient ;
                     if ( my_file.eof() ) break;
 				        
-                    my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;
+                    my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;  //101006 1Æ`Lâ♦∟4↓∞*╠à"£█ Samad 03083 null 0 0 0
                     addClient.ID = id ;
-                    addClient.password = Pass ;
+                    cout << Pass << "  " << endl ;
+                    addClient.password = getDecryptedText(Pass) ;  
                     addClient.name = Name ;
                     addClient.phoneNo = Phone ;
                     addClient.fooding.package = Food ;
@@ -85,7 +90,7 @@ class Clients
         void updateBack()
         {
             ofstream my_file ;
-            string str ;
+            string str, pass ;
             my_file.open( "clients.txt", ios::trunc );
             
             if ( !my_file ) 
@@ -97,7 +102,8 @@ class Clients
                 for ( int i = 0; i < clientList.size(); i++ )
                 { 
                     if( i > 0 ) my_file << endl ;
-                    my_file << clientList[i].getID() << " " << clientList[i].getPassword() << " " << clientList[i].name <<  
+                    pass = getEncryptedText(clientList[i].getPassword()) ;
+                    my_file << clientList[i].getID() << " " << pass << " " << clientList[i].name <<  
                     " " << clientList[i].phoneNo << " " << clientList[i].fooding.package << " " << clientList[i].roomNo << 
                     " " << clientList[i].getTotal() << " " << clientList[i].getDue() ;
                 }

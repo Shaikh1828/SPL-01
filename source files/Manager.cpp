@@ -89,7 +89,7 @@ class Manager
 
         void clientList()
         {
-            cout << "\n-----------------\nCurrent Clients: \n----------------\n" ;
+            cout << "\n--------------\nCurrent Clients: \n-------------\n" ;
             ifstream my_file;
             my_file.open( "clients.txt", ios::in );
             if ( !my_file ) 
@@ -107,7 +107,7 @@ class Manager
 				        
                     my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;
 
-                    if( Room != 0 || Food.size() > 5 )cout << id << " - " << Name << " , Phone : " << Phone << endl ;
+                    if( Room != 0 || Food.size() > 5 ) cout << id << " - " << Name << " , Phone : " << Phone << endl ;
                    
                 }
             }
@@ -224,3 +224,12 @@ class Manager
         }
 
 };
+
+// int main()
+// {
+//     Manager m;
+//     m.clientList();
+//     m.employeeList();
+//     m.Record();
+//     m.seeMessages();
+// }

@@ -412,7 +412,7 @@ void printDecryptTxt( unsigned char* text, int len )
 {
     for ( int i = 0; i < len-1; i++ )
     {
-        printf("%c", text[i] ) ;
+        //printf("%c", text[i] ) ;
         mess[i] = text[i] ;
         if( text[i+1]==paddingCharacter && text[i+2]==paddingCharacter )
         {
@@ -428,7 +428,7 @@ void printEncrypt( unsigned char* text, int len )
 {
     for ( int i = 0; i < len-1; i++ )
     {
-        printf("%c", text[i] ) ;
+        //printf("%c", text[i] ) ;
 
         if( text[i+1]==paddingCharacter && text[i+2]==paddingCharacter )
         {
@@ -481,7 +481,7 @@ string getEncryptedText( string inpt )
             encryptedTxt [i+j] = temp[j] ;
 	}
 
-    cout << sizeof(encryptedTxt) << endl ;
+    //cout << sizeof(encryptedTxt) << endl ;
     mess.resize(17);
 
     for ( int i = 0; i <= extendedLen; i++)
@@ -490,11 +490,11 @@ string getEncryptedText( string inpt )
         man[i] = mess[i] ;
     }
 
-    cout << "Cipher Text: - " ;
-    printStateMatrix( man, sizeof(encryptedTxt) ) ;
-    cout << endl ;
-    printEncrypt( man, extendedLen ) ;
-    cout << endl ;
+    // cout << "Cipher Text: - " ;
+    // printStateMatrix( man, sizeof(encryptedTxt) ) ;
+    // cout << endl ;
+    // printEncrypt( man, extendedLen ) ;
+    // cout << endl ;
 
     return mess ;
 }
@@ -506,7 +506,7 @@ string getDecryptedText( string en_mess )
     {
         man[i] = en_mess[i] ;
     }
-    cout << en_mess << endl ;
+    //cout << en_mess << endl ;
     unsigned char decryptedTxt[extendedLen+1] ;
 
     for ( int i = 0; i < 5; i += 16 )
@@ -524,98 +524,19 @@ string getDecryptedText( string en_mess )
     }
 
     
-    cout << "Decrypted Text:- " ;
+    //cout << "Decrypted Text:- " ;
     printDecryptTxt( decryptedTxt, sizeof(decryptedTxt) ) ;
-    cout << endl ;
+    //cout << endl ;
     return mess ;
 }
 
-int main()
-{
-    string inpt , encr ;
-    cout << "Input : " ;
-    getline( cin, inpt );
-    encr = getEncryptedText( inpt ) ;
-    cout << encr << " " << encr.length() << endl ;
-    cout << getDecryptedText( encr ) ;
-
-    // int len = inpt.length() ;
-
-    // char inputText[len] ;
-    // for( int i=0; i<len; i++) inputText[i] = inpt[i] ;  
-    
-    
-    // //expansionKey( key ) ;
-
-    // int txtLen = sizeof( inputText ) ;
-    // // int extendedLen ;
-
-    // if( (txtLen%16) != 0 )
-    //     extendedLen = txtLen + ( 16 - (txtLen%16) ) ;
-    // else 
-    //     extendedLen = txtLen ;
-
-    // //padding the extra bytes
-
-    // unsigned char encryptedTxt[extendedLen+1], man[extendedLen+1] ;
-
-	// for( int i=0; i<extendedLen; i++ )
-    // {
-  	//     if( i < txtLen )
-    //         encryptedTxt[i] = inputText[i] ;
-  	//     else
-    //         encryptedTxt[i] = paddingCharacter ;
-    //     if( i+1 == extendedLen )
-    //         encryptedTxt[i+1] = '\0';
-    // }
-
-
-    // for( int i=0; i<extendedLen; i+=16 )
-    // {
-    //     unsigned char temp[16] ;
-	// 	for( int j=0; j<16; j++ ) 
-    //         temp[j] = encryptedTxt[i+j] ;
-	// 	encryption( temp ) ;
-	// 	for( int j=0; j<16; j++ ) 
-    //         encryptedTxt [i+j] = temp[j] ;
-	// }
-
-    // cout << sizeof(encryptedTxt) << endl ;
-    // mess.resize(17);
-
-    // for ( int i = 0; i <= extendedLen; i++)
-    // {
-    //     mess[i] = encryptedTxt[i] ;
-    //     man[i] = mess[i] ;
-    // }
-    // cout << mess << endl ;
-    
-    
-    // cout << "Cipher Text: - " ;
-    // printStateMatrix( man, sizeof(encryptedTxt) ) ;
-    // cout << endl ;
-    // printEncrypt( man, extendedLen ) ;
-    // cout << endl ;
-
-
-    // unsigned char decryptedTxt[extendedLen+1] ;
-
-    // for ( int i = 0; i < txtLen; i += 16 )
-    // {
-    //     unsigned char temp[16] ;
-
-    //     for( int j=0; j<16; j++ )
-    //         temp[j] = man[i+j] ;
-	// 	decryption( temp ) ;
-
-	// 	for( int j=0; j<16; j++ )
-    //         decryptedTxt[i+j] = temp[j] ;
-    //     if( i+16 == extendedLen )
-    //         decryptedTxt[i+16] = '\0' ;
-    // }
+// int main()
+// {
+//     string inpt, encr ;
+//     cout << "Input : " ;
+//     getline( cin, inpt );
+//     encr = getEncryptedText( inpt ) ;
+//     cout << getDecryptedText( encr ) ;
 
     
-    // cout << "Decrypted Text:- " ;
-    // printDecryptTxt( decryptedTxt, sizeof(decryptedTxt) ) ;
-    // cout << endl ;
-}
+// }
