@@ -215,7 +215,8 @@ class Clients
                 cout << "\n   Sorry, No room available.\n\n" ;
             }
             cout << "Press any key to continue :\n" ;
-            _getwche() ;
+            cin.get() ;
+            cin.get() ;
         }
 
         void changeRoom( )
@@ -238,7 +239,8 @@ class Clients
             total += fooding.cost ;
             due += fooding.cost ;
             cout << "\nPress any key to continue :\n" ;
-            _getwche() ;
+            cin.get() ;
+            cin.get() ;
         }
 
         void foodChange()
@@ -277,7 +279,8 @@ class Clients
             cout << "Room : " << roomNo << "   Fooding - " << fooding.package << endl ;
             cout << "Total : " << total << "    Due : " << due << endl << endl ;
             cout << "Press any key to continue :\n" ;
-            _getwche() ;
+            cin.get() ;
+            cin.get() ;
         }
 
         void checkOut( )
@@ -303,7 +306,8 @@ class Clients
                 cout << "\nCheckOut not successful...\n";
                 cout << "Due : " << due ;
                 cout << "\nPress any key to continue :\n" ;
-                    _getwche() ;
+                cin.get() ;
+                cin.get() ;
             }
             else
             {
@@ -334,7 +338,8 @@ class Clients
         {
             string Message ;
             cout << "Enter your message : " ;
-            _getwche() ;
+            cin.get() ;
+            cin.get() ;
             getline( cin ,Message ) ;
 
             fstream my_file ;
@@ -367,7 +372,8 @@ class Clients
             password = getEncryptedText( newPass ) ;
             cout << "\n\n    !!! Password changed successfully !!!\n\n" ;
             cout << "Press any key to continue :\n" ;
-            _getwche() ;
+            cin.get() ;
+            cin.get() ;
 
         }
         

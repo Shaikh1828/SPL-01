@@ -57,13 +57,15 @@ class Hotel
                     case 4:
                         cout << "\n\n    Exiting from the system ..  \n\n" ;
                         cout << "Press any key to continue :\n" ;
-                        _getwche() ;
+                        cin.get() ;
+                        cin.get() ;
                         break;
                     
                     default:
                         cout << "\n\nInvalid choice.\n\n" ;
                         cout << "Press any key to continue :\n" ;
-                        _getwche() ;
+                        cin.get() ;
+                        cin.get() ;
                         break;
                 }
 
@@ -134,7 +136,8 @@ void Hotel::loginInterface()
                     {
                         cout << "\n\nA room is already booked..\nGo to Change room..\n\n" ;
                         cout << "Press any key to continue :\n" ;
-                        _getwche() ;
+                        cin.get() ;
+                        cin.get() ;
                     }
                     break;
                 }
@@ -149,7 +152,8 @@ void Hotel::loginInterface()
                     {
                         cout << "\n\nA package is already enrolled..\nGo to Change food package.\n\n" ;
                         cout << "Press any key to continue :\n" ;
-                        _getwche() ;
+                        cin.get() ;
+                        cin.get() ;
                     }                       
                     break;
                 }
@@ -199,14 +203,16 @@ void Hotel::loginInterface()
                 {
                     cout << "\n\n    Logged out from your profile ..!\n\n" ;
                     cout << "Press any key to continue :\n\n" ;
-                    _getwche() ;
+                    cin.get() ;
+                    cin.get() ;
                     break;
                 }
                 default:
                 {
                     cout << "\n\n    Invalid choice. \n\n" ;
                     cout << "Press any key to continue :\n" ;
-                    _getwche() ;
+                    cin.get() ;
+                    cin.get() ;
                     break;
                 }
             }
@@ -219,7 +225,8 @@ void Hotel::loginInterface()
     {
         cout << "\n\n!!! Either no profile is created or Invalid ID-Password.  !!!\n\n" ; 
         cout << "Press any key to continue :\n" ;
-        _getwche() ;
+        cin.get() ;
+        cin.get() ;
     }
 
 }
@@ -236,7 +243,8 @@ void Hotel::signupInterface()
     Clients newClient;
     newClient.signUp( );
     cout << "Press any key to continue :\n" ;
-    _getwche() ;
+    cin.get() ;
+    cin.get() ;
     sendBackUpdate();
 }
 
@@ -272,7 +280,8 @@ void Hotel::managerLogin()
                     manager.clientList() ;
                     cout << "\n\n" ;
                     cout << "Press any key to continue :\n" ;
-                    _getwche() ;
+                    cin.get() ;
+                    cin.get() ;
                     
                     break;
                 }
@@ -280,7 +289,8 @@ void Hotel::managerLogin()
                 {
                     manager.employeeList() ;
                     cout << "Press any key to continue :\n" ;
-                    _getwche() ;
+                    cin.get() ;
+                    cin.get() ;
                              
                     break;
                 }
@@ -289,35 +299,40 @@ void Hotel::managerLogin()
                     cout << "\n\nThe Dues list : \n\n " ;  
                     manager.duesCheck();
                     cout << "\n\nPress any key to continue :\n" ;
-                    _getwche() ;
+                    cin.get() ;
+                    cin.get() ;
                     break;
                 }
                 case 4:
                 {    
                     manager.seeMessages() ;
                     cout << "Press any key to continue :\n" ;
-                    _getwche() ;
+                    cin.get() ;
+                    cin.get() ;
                     break;
                 }
                 case 5:
                 {    
                     manager.Record() ;
                     cout << "Press any key to continue :\n" ;
-                    _getwche() ;
+                    cin.get() ;
+                    cin.get() ;
                     break;
                 }
                 case 6:
                 {
                     cout << "\n\n  Logging out from the Manager system ..  \n\n" ;
                     cout << "Press any key to continue :\n" ;
-                    _getwche() ;
+                    cin.get() ;
+                    cin.get() ;
                     break;
                 }
                 default:
                 {
                     cout << "\n\nInvalid choice.\n\n" ;
                     cout << "Press any key to continue :\n" ;
-                    _getwche() ;
+                    cin.get() ;
+                    cin.get() ;
                     break;
                 }
 
