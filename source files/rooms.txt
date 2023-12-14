@@ -1,5 +1,5 @@
 203 Single AC 1 1200 0
-204 Single AC 1 1200 0
+204 Single AC 0 1200 101011
 205 Single AC 1 1200 0
 206 Single AC 1 1200 0
 207 Single AC 1 1200 0
@@ -7,7 +7,7 @@
 209 Double AC 1 1600 0
 210 Double AC 1 1600 0
 211 Double AC 1 1600 0
-212 Double AC 1 1600 0
+212 Double AC 0 1600 101007
 303 Single AC 1 1200 0
 304 Single AC 1 1200 0
 305 Single AC 1 1200 0

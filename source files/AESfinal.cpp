@@ -536,7 +536,25 @@ string getDecryptedText( string en_mess )
 //     cout << "Input : " ;
 //     getline( cin, inpt );
 //     encr = getEncryptedText( inpt ) ;
+//     cout << encr << endl ;
 //     cout << getDecryptedText( encr ) ;
+
+//     ofstream my_file ;
+//             string str, pass ;
+//             my_file.open( "manager.txt", ios::trunc );
+            
+//             if ( !my_file ) 
+//             {
+//                 cout << "No such file";
+//             }
+//             else 
+//             {
+                
+//                     my_file << "123456 " << encr;
+//             }
+                
+            
+//             my_file.close() ;
 
     
 // }

@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 #include <fstream>
+#include<conio.h>
 using namespace std ;
 
 #include "Room.cpp"
@@ -39,7 +40,7 @@ class Clients
             name = Name ;
             phoneNo = Phone ;
             ID = ++Id ;
-            password = Password ;
+            password = getEncryptedText(Password) ;
             roomNo = total = due = 0 ;
             fooding.package = "null" ;
         }
@@ -69,10 +70,10 @@ class Clients
                     Clients addClient ;
                     if ( my_file.eof() ) break;
 				        
-                    my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;  //101006 1Æ`Lâ♦∟4↓∞*╠à"£█ Samad 03083 null 0 0 0
+                    my_file >> id >> Name  >> Phone >> Food >> Room >> Total >> Due >> Pass  ; 
                     addClient.ID = id ;
-                    cout << Pass << "  " << endl ;
-                    addClient.password = getDecryptedText(Pass) ;  
+                    //cout << Pass << "  " << endl ;
+                    addClient.password = Pass ;  
                     addClient.name = Name ;
                     addClient.phoneNo = Phone ;
                     addClient.fooding.package = Food ;
@@ -102,10 +103,11 @@ class Clients
                 for ( int i = 0; i < clientList.size(); i++ )
                 { 
                     if( i > 0 ) my_file << endl ;
-                    pass = getEncryptedText(clientList[i].getPassword()) ;
-                    my_file << clientList[i].getID() << " " << pass << " " << clientList[i].name <<  
-                    " " << clientList[i].phoneNo << " " << clientList[i].fooding.package << " " << clientList[i].roomNo << 
-                    " " << clientList[i].getTotal() << " " << clientList[i].getDue() ;
+                    pass = clientList[i].password ;
+                    //pass = getEncryptedText(clientList[i].password) ;
+                    my_file << clientList[i].getID() << " " << clientList[i].name <<  " " << clientList[i].phoneNo << " " 
+                    << clientList[i].fooding.package << " " << clientList[i].roomNo << " " << clientList[i].getTotal() 
+                    << " " << clientList[i].getDue() << endl << pass ;
                 }
                 
             } 
@@ -124,12 +126,16 @@ class Clients
             cin >> Pass ;
             Clients newClient( Name, Phone, Pass ) ;
             cout << "\n      !!! New account created !!! \n\n ";
-            cout << "ID - " << newClient.ID << "  Password - " << newClient.password << endl << endl ;
+            cout << "ID - " << newClient.ID << "  Password - " << Pass << endl << endl ;
             cout << "**  Keep these informations safe and secured  ** \n\n" ;
             clientList.push_back( newClient ) ;
         }
 
-        
+        void setPassword( string pass )
+        {
+            this->password = pass ;
+        }
+
         int getID()
         {
             return this->ID ;
@@ -173,11 +179,11 @@ class Clients
             int n = 3 , match;
             while ( n-- )
             {   
-                getchar() ;
                 cout << "Please enter ID : " ;
                 cin >> client.ID ;
                 cout << "Please enter password : " ;
                 cin >> client.password ;
+                client.setPassword (getEncryptedText(client.password)) ;
                 match = client.matchClient( client );
                 if( match != -1 ) break;
                 if( n != 0 ) cout << "Incorrect ID or Password. Try again.\n" ;
@@ -254,6 +260,7 @@ class Clients
         {
             for ( int i = 0; i < clientList.size(); i++ )
             {
+                cout << client.ID <<" "<< clientList[i].ID <<" "<< client.password <<" "<< clientList[i].password << endl ; 
                 if ( client.ID == clientList[i].ID && client.password == clientList[i].password )
                 {
                     cout << "\n\n    Matched!!! \n" << endl ;
@@ -278,13 +285,18 @@ class Clients
             int payment = 0 ;
             char ch = 'N' ;
             getAccount() ;
-            cout << "Wanna pay now ? Y/N " ;
-            cin >> ch ;
-            if( ch == 'Y' )
+            
+            if( due > 0 )
             {
-                cout << "Amount want to pay : " ;
-                cin >> payment ;
-                due -= payment ;
+                cout << "Wanna pay now ? Y/N " ;
+                cin >> ch ;
+                if( ch == 'Y')
+                {
+                    cout << "Amount want to pay : " ;
+                    cin >> payment ;
+                    due -= payment ;
+                }
+                
             }
             if( due > 0 )
             {
@@ -322,7 +334,7 @@ class Clients
         {
             string Message ;
             cout << "Enter your message : " ;
-            getchar() ;
+            _getwche() ;
             getline( cin ,Message ) ;
 
             fstream my_file ;
@@ -352,7 +364,7 @@ class Clients
                 if( newPass != renewPass ) cout << "Password didn't match..Try again..\n" ;
             } 
             
-            password = newPass ;
+            password = getEncryptedText( newPass ) ;
             cout << "\n\n    !!! Password changed successfully !!!\n\n" ;
             cout << "Press any key to continue :\n" ;
             _getwche() ;

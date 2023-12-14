@@ -30,28 +30,28 @@ class Manager
             }
             cout << endl ;
 
-            my_file.close();
+            my_file.close() ;
         }
 
         void Record()
         {
             cout << "\n\n----------\nRecord:\n----------\n\n" ;
-            ifstream my_file;
-            my_file.open( "clients.txt", ios::in );
+            ifstream my_file ;
+            my_file.open( "clients.txt", ios::in ) ;
             if ( !my_file ) 
             {
-                cout << "No such file";
+                cout << "No such file" ;
             }
             else 
             {
                 string Pass, Phone, Name , Food ;
-                int id , Room , Due, Total;
+                int id , Room , Due, Total ;
 
                 while ( 1 ) 
                 {
                     if ( my_file.eof() ) break;
 				        
-                    my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;
+                    my_file >> id >> Name >> Phone >> Food >> Room >> Total >> Due >> Pass ;
 
                     cout << id << " - " << Name << " , Phone : " << Phone << endl << endl ;
                    
@@ -105,7 +105,7 @@ class Manager
                 {
                     if ( my_file.eof() ) break;
 				        
-                    my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;
+                    my_file >> id >> Name >> Phone >> Food >> Room >> Total >> Due >> Pass ;
 
                     if( Room != 0 || Food.size() > 5 ) cout << id << " - " << Name << " , Phone : " << Phone << endl ;
                    
@@ -128,6 +128,7 @@ class Manager
                 cin >> ID ;
                 cout << "Please enter password : " ;
                 cin >> Password ;
+                Password = getEncryptedText(Password) ;
                 match = matchIDPass( ID, Password );
                 if( match ) break;
                 if( n != 0 ) cout << "Incorrect ID or Password. Try again.\n" ;
@@ -153,6 +154,9 @@ class Manager
 
             my_file.close();
 
+            //Password = getEncryptedText(Password);
+
+            cout << ID << " " << realID << " " << Password << " " << realPass << endl ;
             if ( ID == realID && Password == realPass )
             {
                 return true;
@@ -181,7 +185,7 @@ class Manager
                 {
                     if ( my_file.eof() ) break;
 				        
-                    my_file >> id >> Pass >> Name >> Phone >> Food >> Room >> Total >> Due ;
+                    my_file >> id  >> Name >> Phone >> Food >> Room >> Total >> Due >> Pass ;
 
                     totalDue += Due ;
                     dues.push_back ( Due ) ;
@@ -193,7 +197,7 @@ class Manager
 
             sorting( dues, ids );
             
-            cout << "\nTotal Due : " << totalDue << endl ;
+            cout << "\nTotal Due : \t\t" << totalDue << endl ;
 
         }
 
