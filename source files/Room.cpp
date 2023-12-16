@@ -16,7 +16,6 @@ class Room
         string condition ;
         bool availableStatus;
         int price ;
-        //Clients resider;
 
         Room()
         {

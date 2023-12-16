@@ -25,6 +25,13 @@ string caToStr( char* a )
     return s;
 }
 
+string CaToStr( const char* a )
+{
+    string s(a);
+ 
+    return s;
+}
+
 
 void messageOption( int ClientID )
 {
@@ -74,7 +81,7 @@ void messageOption( int ClientID )
 
          clientSocket.sendMessage( receiver.c_str() );
 
-         cout << "Type Message(type ( .END. ) to terminate) : \n" ;
+         cout << "Type Your Message (type ( .END. ) to send) : \n" ;
 
          do
          {
@@ -95,10 +102,11 @@ void messageOption( int ClientID )
 
          string mailSubject, numberOfMails;
 
-         numberOfMails = clientSocket.recvMessage();
-         cout << numberOfMails;
+         numberOfMails = CaToStr( clientSocket.recvMessage() ) ;
+         sleep( 1 );
+         cout << numberOfMails << endl ;
 
-         int mailAmount = stoi(numberOfMails.substr(0, numberOfMails.find(' ')) );
+         int mailAmount = stoi( numberOfMails.substr( 0, numberOfMails.find(' ')) );
          int mailNo ;
          
          if ( mailAmount > 0 )
@@ -107,13 +115,10 @@ void messageOption( int ClientID )
             {
                clientSocket.sendMessage("OK");
 
-               mailSubject = clientSocket.recvMessage();
+               mailSubject = CaToStr(clientSocket.recvMessage());
             
-               // mailSubject = mailSubject.substr(mailSubject.find('_') + 1, mailSubject.length()) + ' ' 
-               //    + mailSubject.substr(0,mailSubject.find('_'));
                cout << mailSubject << endl;
             }
-
             
             cout << "Enter mail number you want to read:";
             cin >> mailNo ;
@@ -122,19 +127,20 @@ void messageOption( int ClientID )
          cout << endl ;
 
          strcpy( buffer , to_string( mailNo ).c_str() ) ;
-         clientSocket.sendMessage(buffer);
+         clientSocket.sendMessage( buffer );
 
          string mailOutput;
          string resp = clientSocket.recvMessage();
-         cout << resp << endl;
+         //cout << resp << endl;
+         cout << "From : " ;
 
-         if (resp == "OK")
+         if ( resp == "OK")
          {
             while (1)
             {
                clientSocket.sendMessage("OK\0");
-               mailOutput = clientSocket.recvMessage();
-               if (mailOutput == ".END.")
+               mailOutput = CaToStr(clientSocket.recvMessage());
+               if ( mailOutput.find(".END.") < 500 )
                {
                   break;
                }

@@ -31,7 +31,6 @@ class Clients
             ID = 0 ;
             password = "" ;
             fooding.package = "" ;
-
         }
 
         Clients( string Name, string Phone, string Password )
@@ -54,7 +53,6 @@ class Clients
         {
             clientList.clear();
             fstream my_file;
-            // my_file.open( "clients.txt", ios::in );
             my_file.open( "clients.txt", ios::in );
             if ( !my_file ) 
             {

@@ -33,7 +33,6 @@ class Hotel
                 cout << "\n3. Log in as Manager ." << endl ;
                 cout << "\n4. Exit ." << endl ; 
                 cout << "\nYour Choice : " ;
-                //cin >> tmp ;
                 cin >> choice ;
 
                 switch (choice)
@@ -267,7 +266,7 @@ void Hotel::managerLogin()
     if( manager.login() )
     {
         int choice = 1 ;
-        while ( choice != 6 )
+        while ( choice != 7 )
         {
             updateAll();
             cout << "\n\n" ;
@@ -361,12 +360,3 @@ void Hotel::managerLogin()
         }
     }
 }
-
-// int main ( )
-// {
-//     Hotel RoomRaccon ;
-//     RoomRaccon.menu();
-//     // Clients c1( "Shaikh", "01212", "asdf1234" );
-//     // //c1.enrollFood();
-//     // c1.message();
-// }

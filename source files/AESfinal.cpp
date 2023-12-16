@@ -22,6 +22,9 @@ void inverseMixColumn( unsigned char* state ) ;
 void decryption( unsigned char* cipherText ) ;
 void printStateMatrix( unsigned char* state, int numOfVals ) ;
 void printDecryptTxt( unsigned char* text, int len ) ;
+string getEncryptedText( string inpt ) ;
+string getDecryptedText( string en_mess ) ;
+
 
 unsigned char roundConstant[10] = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36 } ;
 
@@ -225,9 +228,6 @@ void expansionKey( unsigned char *originalKey )
         {
             rotationOfWord( prevWord ) ;
             substitutionWord( prevWord ) ;
-
-            //now, x-oring:
-
             prevWord[0] ^= roundConstant[ (idx/16) - 1 ] ;
         }
 

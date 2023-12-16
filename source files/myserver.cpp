@@ -22,6 +22,13 @@ using namespace std;
 
 mutex mtx;
 
+string CaToStr( const char* a )
+{
+    string s(a);
+ 
+    return s;
+}
+
 void serverThread(MyHelper helper, MySocket &serverSocket, int new_socket, string argDir)  
 {
    string command, buffer, message;
@@ -61,24 +68,24 @@ void serverThread(MyHelper helper, MySocket &serverSocket, int new_socket, strin
             mtx.lock();
 
             mailId = helper.filesInDirectory(fullDir) + 1 ;
-            string filename = fullDir + '/' + to_string(mailId) + ".txt" ;
+            string filename = fullDir + "/" + to_string(mailId) + "_"+ sender + ".txt" ;
 
-            while (1)
-            {
-               if (helper.fileExists(filename))
-               {
-                  mailId++;
-                  filename = fullDir + '/' + to_string(mailId) + ".txt";    //   1_statAsk.txt
-               }
-               else
-               {
-                  break;
-               }
-            }
+            // while (1)
+            // {
+            //    if (helper.fileExists(filename))
+            //    {
+            //       mailId++;
+            //       filename = fullDir + '/' + to_string(mailId) + ".txt";    //   1_statAsk.txt
+            //    }
+            //    else
+            //    {
+            //       break;
+            //    }
+            // }
 
             ofstream file;
             file.open(filename.c_str(), ios::out);
-            file << sender + "\n" + message + "\n";
+            file << message ;
             cout << "Mail from user " << sender << " sent to " << receiver << " at " << filename << endl;
             serverSocket.sendMessage("SENT!!\n", new_socket);
             file.close();
@@ -88,26 +95,28 @@ void serverThread(MyHelper helper, MySocket &serverSocket, int new_socket, strin
       {
          string user = serverSocket.recvMessage(new_socket);     
       
-         string dirPath = argDir + '/' + user ;
+         string dirPath = argDir + "/" + user ;
 
          if ( access(dirPath.c_str(), F_OK) == -1 )
          {
-            buffer = "0 mails for user " + user;
+            buffer = "0 mails for user " + user ;
             serverSocket.sendMessage(buffer.c_str(), new_socket);
+            sleep( 1 );
          }
          else
          {
             vector<string> mails;
 
             mails = helper.subjectsInDirectory(dirPath);
-            //sort(mails.begin(), mails.end());                  //added sort
+            //sort(mails.begin(), mails.end());                  
             buffer = to_string(mails.size()) + " mails for user " + user;
             serverSocket.sendMessage(buffer.c_str(), new_socket);
+            sleep( 1 );
 
             if (mails.size() > 0)
             {
                cout << "Sent list of mails from user " << user << " to client" << endl;
-               for (unsigned int i = 0; i < mails.size(); i++)
+               for (unsigned int i = 0; i < mails.size(); i++)   // i = 1/0 ?
                {
                   
                   buffer = serverSocket.recvMessage(new_socket);
@@ -119,22 +128,23 @@ void serverThread(MyHelper helper, MySocket &serverSocket, int new_socket, strin
             }
          }
  
-         string mailNumber = serverSocket.recvMessage(new_socket);
+         string mailNumber = CaToStr(serverSocket.recvMessage(new_socket)) ;
 
-         ofstream file;
+         ifstream file;
 
-         if ( 1 )
-         {
+         // if ( 1 )
+         // {
             int mailIndex ;
-            mailIndex = stoi(mailNumber) - 1;
-            string line, fulldir, dirPath = argDir + '/' + user;
-            ifstream file;
+            mailIndex = stoi(mailNumber) - 1 ;
+            string line, fulldir;
+            dirPath = argDir + "/" + user;
+   
             vector<string> mails;
 
-            if ( mailIndex == -1 )
-            {
-               continue ;
-            }
+            // if ( mailIndex == -1 )
+            // {
+            //    continue ;
+            // }
             
 
             if ( access(dirPath.c_str(), F_OK) == -1)
@@ -177,20 +187,20 @@ void serverThread(MyHelper helper, MySocket &serverSocket, int new_socket, strin
                   serverSocket.sendMessage("ERR - mail does not exist\0", new_socket);
                }
             }
-         }
-         else
-         {
-            serverSocket.sendMessage("ERR - mail number is not an integer\0", new_socket);
-         }
+         // }
+         // else
+         // {
+         //    serverSocket.sendMessage("ERR - mail number is not an integer\0", new_socket);
+         // }
       }
       else if ( command == "3" )
       {
          cout << "Client exited from Messaging Portal." << endl ;
       }
-      else
-      {
-         serverSocket.sendMessage("ERR - mail number is not an integer\0", new_socket);
-      }  
+      // else
+      // {
+      //    serverSocket.sendMessage("ERR - mail number is not an integer\0", new_socket);
+      // }  
 
    } 
    while (command != "3");                  
