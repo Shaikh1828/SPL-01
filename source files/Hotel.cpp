@@ -4,6 +4,9 @@ using namespace std ;
 
 #include "Clients.cpp"
 #include "Manager.cpp"
+#include "myclient.cpp"
+
+string tmp;
 
 class Hotel 
 {
@@ -30,6 +33,7 @@ class Hotel
                 cout << "\n3. Log in as Manager ." << endl ;
                 cout << "\n4. Exit ." << endl ; 
                 cout << "\nYour Choice : " ;
+                //cin >> tmp ;
                 cin >> choice ;
 
                 switch (choice)
@@ -104,7 +108,7 @@ void Hotel::loginInterface()
     if( match != -1 )
     {
         int choice = 1 ;
-        while ( choice != 9 )
+        while ( choice )
         {
             updateAll();
             cout << "\n\n" ;
@@ -120,8 +124,9 @@ void Hotel::loginInterface()
             cout << "5. Change Food-package .\n\n" ;
             cout << "6. Change Password .\n\n" ;
             cout << "7. Check out .\n\n" ;
-            cout << "8. Complains or Suggestions .\n\n" ;
-            cout << "9. Log out .\n\n" ;
+            cout << "8. Message to Authority .\n\n" ;
+            cout << "9. Review or Suggestions .\n\n" ;
+            cout << "0. Log out .\n\n" ;
 
             cout << "Enter your choice : " ;
             cin >> choice ;
@@ -195,11 +200,17 @@ void Hotel::loginInterface()
                 }
                 case 8:
                 {
-                    cout << "\n\n    Complain or suggestion box :\n\n" ;
-                    clientList[match].message() ;
+                    cout << "\n\n    Messaging Section :\n\n" ;
+                    messageOption( clientList[match].getID() );
                     break;
                 }
                 case 9:
+                {
+                    cout << "\n\n    Review and suggestion box :\n\n" ;
+                    clientList[match].message() ;
+                    break;
+                }
+                case 0:
                 {
                     cout << "\n\n    Logged out from your profile ..!\n\n" ;
                     cout << "Press any key to continue :\n\n" ;
@@ -213,6 +224,7 @@ void Hotel::loginInterface()
                     cout << "Press any key to continue :\n" ;
                     cin.get() ;
                     cin.get() ;
+                    cin >> tmp ;
                     break;
                 }
             }
@@ -266,9 +278,10 @@ void Hotel::managerLogin()
             cout << "1. Current Client List .\n\n" ;
             cout << "2. Current Employee List .\n\n" ;
             cout << "3. Total dues .\n\n" ;
-            cout << "4. Messages .\n\n" ;
+            cout << "4. Reviews and Suggestions .\n\n" ;
             cout << "5. Record of all clients .\n\n" ;
-            cout << "6. Log out .\n\n" ;
+            cout << "6. Messages .\n\n" ;
+            cout << "7. Log out .\n\n" ;
 
             cout << "Enter your choice : " ;
             cin >> choice ;
@@ -321,18 +334,26 @@ void Hotel::managerLogin()
                 }
                 case 6:
                 {
+                    cout << "\n\n    Messaging Section :\n\n" ;
+                    messageOption( 123456 );
+                    break;
+                }
+                case 7:
+                {
                     cout << "\n\n  Logging out from the Manager system ..  \n\n" ;
                     cout << "Press any key to continue :\n" ;
                     cin.get() ;
                     cin.get() ;
                     break;
                 }
+                
                 default:
                 {
                     cout << "\n\nInvalid choice.\n\n" ;
                     cout << "Press any key to continue :\n" ;
                     cin.get() ;
                     cin.get() ;
+                    cin >> tmp ;
                     break;
                 }
 
