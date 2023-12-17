@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "iosfwd": "cpp",
+        "string_view": "cpp",
+        "regex": "cpp",
+        "system_error": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

@@ -4,7 +4,7 @@ using namespace std ;
 
 #include "Clients.cpp"
 #include "Manager.cpp"
-// #include "myclient.cpp"
+//#include "myclient.cpp"
 
 string tmp;
 
@@ -39,7 +39,9 @@ class Hotel
                 {
                     case 1:
                     {
+                        // cout << "ok1\n" ;
                         Clients client(1);
+                        // cout << "ok1\n" ;
                         cout << "\n\n     Client Log in :     \n\n" ;
                         loginInterface();
                         break;
@@ -84,9 +86,13 @@ class Hotel
 
         void updateAll()
         {
+            // cout << "ok1\n" ; 
             Clients client( 1 );
+            // cout << "ok1\n" ;
             Room room( 1 );
+            // cout << "ok1\n" ;
             FoodPackage food( 1 );
+            // cout << "ok1\n" ;
         }
 
         void sendBackUpdate()
@@ -200,7 +206,7 @@ void Hotel::loginInterface()
                 case 8:
                 {
                     cout << "\n\n    Messaging Section :\n\n" ;
-                    // messageOption( clientList[match].getID() );
+                    //messageOption( clientList[match].getID() );
                     break;
                 }
                 case 9:
@@ -334,7 +340,7 @@ void Hotel::managerLogin()
                 case 6:
                 {
                     cout << "\n\n    Messaging Section :\n\n" ;
-                    // messageOption( 123456 );
+                    //messageOption( 123456 );
                     break;
                 }
                 case 7:
